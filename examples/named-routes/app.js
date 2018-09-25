@@ -11,7 +11,7 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', name: 'home', component: Home },
+    { path: '/', name: 'home', component: Home },  // 命名路由
     { path: '/foo', name: 'foo', component: Foo },
     { path: '/bar/:id', name: 'bar', component: Bar }
   ]
@@ -31,4 +31,6 @@ new Vue({
       <router-view class="view"></router-view>
     </div>
   `
+  // 一个路由对象($route)表示当前激活的路由的状态信息 包含了当前URL解析得到的信息 还有URL匹配到的路由记录 路由对象是不可变的 每次成功的导航后都会产生一个新的对象
+  // $route.name 获取命名路由的name属性值
 }).$mount('#app')

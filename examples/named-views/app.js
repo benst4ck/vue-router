@@ -12,8 +12,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/',
-      // a single route can define multiple named components
-      // which will be rendered into <router-view>s with corresponding names.
+      // 一个路由可以定义多个命名组件 这些命名组件将被渲染到相对应的命名路由出口处
       components: {
         default: Foo,
         a: Bar,

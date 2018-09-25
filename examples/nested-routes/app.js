@@ -59,7 +59,7 @@ const router = new VueRouter({
 
         {
           path: 'qux/:quxId',
-          component: Qux,
+          component: Qux,  // Qux组件中渲染到quux的相对子路径的链接 当访问该链接时Quux组件将在Qux组件的路由出口处渲染
           children: [{ path: 'quux', name: 'quux', component: Quux }]  
           // 这里是一个命名路由 当要在<router-link>中链接到一个命名路由时 只需要给它的to属性传递一个对象 :to="{ name: 'quux' }"
           // 当访问 /nested-routes/parent/qux/123/quux 这样一个路径时 Parent组件在最外层路由出口<router-view>中渲染
@@ -103,6 +103,6 @@ new Vue({
   `
   // 渲染到这个路由出口的组件会自动添加"view"类
   // 最后一个路由是一个基于前一次访问路径的路由 
-  // 如果我正在访问 /nested-routes/parent/bar 现在点击最后一个路由 那么不会有任何反应 以为动态参数zapId并不存在于 /nested-routes/parent/bar 中
+  // 如果我正在访问 /nested-routes/parent/bar 现在点击最后一个路由 那么不会有任何反应 因为动态参数zapId并不存在于 /nested-routes/parent/bar 中
   // 如果我正在访问 /nested-routes/parent/zap 或者 /nested-routes/parent/zap/1 现在点击最后一个路由 那么会传入或者修改动态参数zapId为2 这时就会出现改变
 }).$mount('#app')
