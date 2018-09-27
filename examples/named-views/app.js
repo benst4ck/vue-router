@@ -44,4 +44,5 @@ new Vue({
       <router-view class="view three" name="b"></router-view>
     </div>
   `
+  // 通过<router-view>的name属性定义命名路由出口 使得组件可以按需求渲染到相应位置
 }).$mount('#app')

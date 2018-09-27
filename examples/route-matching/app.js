@@ -3,24 +3,26 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-// The matching uses path-to-regexp, which is the matching engine used
-// by express as well, so the same matching rules apply.
-// For detailed rules, see https://github.com/pillarjs/path-to-regexp
+// 这里的匹配使用的是path-to-regexp(https://github.com/pillarjs/path-to-regexp) 它和express使用的是相同的匹配引擎 所以使用的匹配规则也是相同的
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
     { path: '/' },
-    // params are denoted with a colon ":"
+
+    // 通过冒号(:)指示参数
     { path: '/params/:foo/:bar' },
-    // a param can be made optional by adding "?"
+
+    // 通过在参数后添加问号使得参数变为可选参数
     { path: '/optional-params/:foo?' },
-    // a param can be followed by a regex pattern in parens
-    // this route will only be matched if :id is all numbers
+
+    // 一个参数后可以紧跟着用括号包裹的正则表达式 这个正则表达式修饰的是括号前的参数(:id) 这个路由将只匹配参数为纯数字的路径 \d表示匹配一个数字字符 +表示一个或多个
     { path: '/params-with-regex/:id(\\d+)' },
-    // asterisk can match anything
+    
+    // 星号可以匹配所有路径
     { path: '/asterisk/*' },
-    // make part of the path optional by wrapping with parens and add "?"
+
+    // 通过括号包裹路径的一部分 并给这部分添加一个问号 就能使得包裹的这部分变为可选的
     { path: '/optional-group/(foo/)?bar' }
   ]
 })
@@ -46,4 +48,5 @@ new Vue({
       <pre>{{ JSON.stringify($route, null, 2) }}</pre>
     </div>
   `
+  // 这个例子中并没有给匹配到的路径设置对应的组件去渲染 所以在模版中没有定义路由出口 而只是显示当前匹配路由的一些基本信息
 }).$mount('#app')
