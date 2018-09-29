@@ -18,18 +18,20 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Home,
       children: [
-        { path: '', component: Default },
+        { path: '', component: Default },  // 当访问 / 时 实际是用Default组件来渲染
         { path: 'foo', component: Foo },
         { path: 'bar', component: Bar },
         { path: 'baz', name: 'baz', component: Baz },
         { path: 'with-params/:id', component: WithParams },
-        // relative redirect to a sibling route
+        // 重定向到兄弟路由
         { path: 'relative-redirect', redirect: 'foo' }
       ]
     },
-    // absolute redirect
+
+    // 绝对重定向
     { path: '/absolute-redirect', redirect: '/bar' },
-    // dynamic redirect, note that the target route `to` is available for the redirect function
+
+    // 动态重定向新建 这里的参数to是被访问的目标路由
     { path: '/dynamic-redirect/:id?',
       redirect: to => {
         const { hash, params, query } = to
@@ -45,20 +47,21 @@ const router = new VueRouter({
           return '/bar'
         }
       }
+      // 当访问 /dynamic-redirect 时 会被重定向到 /bar
     },
-    // named redirect
+    // 重定向到一个命名路由
     { path: '/named-redirect', redirect: { name: 'baz' }},
 
-    // redirect with params
+    // 带参数的重定向
     { path: '/redirect-with-params/:id', redirect: '/with-params/:id' },
 
-    // redirect with caseSensitive
+    // caseSensitive的值为true时 表示对路径的匹配规则是大小写敏感的
     { path: '/foobar', component: Foobar, caseSensitive: true },
 
-    // redirect with pathToRegexpOptions
+    // pathToRegexpOptions.sensitive的值为true时 表示对路径的匹配规则是大小写敏感的 相当于 caseSensitive: true
     { path: '/FooBar', component: FooBar, pathToRegexpOptions: { sensitive: true }},
 
-    // catch all redirect
+    // 将所有没有匹配路径的访问全部重定向到 /
     { path: '*', redirect: '/' }
   ]
 })

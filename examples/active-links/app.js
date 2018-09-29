@@ -70,4 +70,5 @@ new Vue({
       <router-view class="view"></router-view>
     </div>
   `
+  // 想要链接使用exact匹配模式 则使用exact属性 对于<router-link to="/" exact> 这个链接只会在地址为 / 的时候被激活 /foo这样的路径并不会间接激活它
 }).$mount('#app')
