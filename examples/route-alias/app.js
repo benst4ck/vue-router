@@ -16,23 +16,27 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
+    // 访问 /root 相当于访问 /root-alias
     { path: '/root', component: Root, alias: '/root-alias' },
     { path: '/home', component: Home,
       children: [
-        // absolute alias
+        // 绝对别名 带'/'的路径为绝对路径 不带'/'的为相对路径 
+        // 'foo' 表示'/home/foo'
+        // '/foo' 表示'/foo'
         { path: 'foo', component: Foo, alias: '/foo' },
-        // relative alias (alias to /home/bar-alias)
+        // 相对别名(其绝对路径为 /home/bar-alias)
         { path: 'bar', component: Bar, alias: 'bar-alias' },
-        // multiple aliases
+        // 多个别名
         { path: 'baz', component: Baz, alias: ['/baz', 'baz-alias'] },
-        // default child route with empty string as alias.
+        // 访问 /home/default 和 /home 是一样的
         { path: 'default', component: Default, alias: '' },
-        // nested alias
+        // 嵌套别名 访问 /home/nested/foo 相当于访问 /home/nested-alias/foo
         { path: 'nested', component: Nested, alias: 'nested-alias',
           children: [
             { path: 'foo', component: NestedFoo }
           ]
         }
+        // 当访问/home/nested/foo时 对于组件的渲染 Home组件渲染到最外层的<router-view> Nested组件渲染到Home组件的<router-view NestedFoo组件渲染到Nested组件的<router-view
       ]
     }
   ]
