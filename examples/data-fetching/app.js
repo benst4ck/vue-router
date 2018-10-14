@@ -11,7 +11,8 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Home },
-    { path: '/post/:id', component: Post }
+    { path: '/post/:id', component: Post }  // 当从其他路由切换到该路由时 Post组件实例立刻被创建 它的created钩子马上被调用 当从该路由切换到其他路由时 Post组件会被销毁
+                                            // 当从 /post/1 切换到 /post/2 时 Post组件并不会被销毁和重建 它任然处在原来的生命周期中
   ]
 })
 
