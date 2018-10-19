@@ -16,7 +16,7 @@ const router = new VueRouter({
   ]
 })
 
-new Vue({
+new Vue({  // 通过new Vue()实例化一个根组件 子组件只需要通过配置进行叠加 避免了每次都要去实例化子组件 所以在 *.vue 文件中 并不需要通过new Vue()来实例化子组件
   router,
   template: `
     <div id="app">
